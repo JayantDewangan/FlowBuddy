@@ -6,8 +6,7 @@
   "scripts": {
     "install-all": "npm install && npm install --prefix client && npm install --prefix server",
     "build": "npm install --prefix client && npm run build --prefix client",
-    "start": "node server/index.js",
-    "dev": "npm run dev --prefix server & npm run dev --prefix client"
+    "start": "npm install --prefix server && node server/index.js"
   },
   "keywords": [
     "mern",
@@ -16,6 +15,6 @@
     "react",
     "node"
   ],
-  "author": "FlowBuddy Team",
+  "author": "FlowBuddy",
   "license": "MIT"
 }

@@ -1,4 +1,5 @@
 require('dotenv').config();
+
 const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
@@ -17,20 +18,27 @@ const viewerRoutes = require('./routes/viewer');
 const settingsRoutes = require('./routes/settings');
 const messageRoutes = require('./routes/messages');
 
+// Connect DB
 connectDB();
 
 const app = express();
 
-// CORS — allow client origin with credentials
+// 🔐 CORS configuration
 app.use(cors({
   origin: process.env.CLIENT_URL || 'http://localhost:5173',
   credentials: true,
 }));
 
+// Middleware
 app.use(express.json());
 app.use(cookieParser());
 
-// API Routes
+// 🧪 Health check (for testing deployment)
+app.get('/api/health', (req, res) => {
+  res.send('FlowBuddy API is running 🚀');
+});
+
+// 🔗 API Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/cycle', cycleRoutes);
 app.use('/api/log', logRoutes);
@@ -40,18 +48,25 @@ app.use('/api/viewer', viewerRoutes);
 app.use('/api/settings', settingsRoutes);
 app.use('/api/messages', messageRoutes);
 
-// Serve React build in production
+// 🌐 Serve frontend (production only)
 if (process.env.NODE_ENV === 'production') {
-  const clientDist = path.join(__dirname, '../client/dist');
+  const root = path.resolve();
+  const clientDist = path.join(root, 'client', 'dist');
+
   app.use(express.static(clientDist));
+
   app.get('*', (req, res) => {
     res.sendFile(path.join(clientDist, 'index.html'));
   });
 }
 
+// ❌ Error handler
 app.use(errorHandler);
 
+// 🚀 Start server
 const PORT = process.env.PORT || 5000;
+
 app.listen(PORT, () => {
   console.log(`🌸 FlowBuddy server running on port ${PORT}`);
+  console.log(`ENV: ${process.env.NODE_ENV}`);
 });
