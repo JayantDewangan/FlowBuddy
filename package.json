@@ -1,13 +1,21 @@
 {
   "name": "flowbuddy",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "FlowBuddy - MERN Period Tracker and Wellness App",
+  "main": "server/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "install-all": "npm install && npm install --prefix client && npm install --prefix server",
+    "build": "npm install --prefix client && npm run build --prefix client",
+    "start": "node server/index.js",
+    "dev": "npm run dev --prefix server & npm run dev --prefix client"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs"
+  "keywords": [
+    "mern",
+    "period-tracker",
+    "wellness",
+    "react",
+    "node"
+  ],
+  "author": "FlowBuddy Team",
+  "license": "MIT"
 }
