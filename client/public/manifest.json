@@ -1,0 +1,25 @@
+{
+  "name": "FlowBuddy",
+  "short_name": "FlowBuddy",
+  "description": "Your warm, friendly cycle tracking companion 🌸",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFF5F9",
+  "theme_color": "#C084FC",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["health", "lifestyle"]
+}
