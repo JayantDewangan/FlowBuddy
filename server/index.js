@@ -25,7 +25,7 @@ const app = express();
 
 // 🔐 CORS configuration
 app.use(cors({
-  origin: process.env.CLIENT_URL || 'https://flowbuddy-3.onrender.com',
+  origin: process.env.CLIENT_URL || 'http://localhost:5173/login',
   credentials: true,
 }));
 
