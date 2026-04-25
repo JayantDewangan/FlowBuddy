@@ -48,14 +48,18 @@ app.use('/api/viewer', viewerRoutes);
 app.use('/api/settings', settingsRoutes);
 app.use('/api/messages', messageRoutes);
 
-// 🌐 Serve frontend (production only)
 if (process.env.NODE_ENV === 'production') {
   const root = path.resolve();
   const clientDist = path.join(root, 'client', 'dist');
 
+  // Serve static files FIRST
   app.use(express.static(clientDist));
 
+  // Only fallback for frontend routes
   app.get('*', (req, res) => {
+    if (req.path.startsWith('/api')) {
+      return res.status(404).json({ message: 'API route not found' });
+    }
     res.sendFile(path.join(clientDist, 'index.html'));
   });
 }
