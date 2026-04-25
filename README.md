@@ -2,7 +2,6 @@
 
 **FlowBuddy** is a modern, premium MERN-stack period tracking and wellness application designed to help users track their cycles with elegance and ease. It features a unique **Trusted Circle** system that allows users to securely share their status with loved ones (partners, parents, doctors) and chat in real-time.
 
-![FlowBuddy Preview](https://via.placeholder.com/1200x600/1E1532/C084FC?text=FlowBuddy+Wellness+Platform)
 
 ## Key Features
 
