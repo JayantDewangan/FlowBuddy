@@ -48,21 +48,21 @@ app.use('/api/viewer', viewerRoutes);
 app.use('/api/settings', settingsRoutes);
 app.use('/api/messages', messageRoutes);
 
-// Replace the production serving block in server/index.js with this:
-if (process.env.NODE_ENV === 'production') {
-  const root = path.resolve();
-  const clientDist = path.join(root, 'client', 'dist');
+// Serve static files from the React app
+const clientDist = path.join(__dirname, '..', 'client', 'dist');
 
-  // 1. Serve static files
+if (process.env.NODE_ENV === 'production') {
   app.use(express.static(clientDist));
 
-  // 2. Handle React routing (after API routes)
   app.get('*', (req, res) => {
-    // If it's a 404 for an API route, send JSON instead of the HTML file
     if (req.path.startsWith('/api')) {
       return res.status(404).json({ message: 'API route not found' });
     }
     res.sendFile(path.join(clientDist, 'index.html'));
+  });
+} else {
+  app.get('/', (req, res) => {
+    res.send('API is running... (Use the React dev server for frontend)');
   });
 }
 
